@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="todoApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="index.js"></script>
+    <title>GradeCalculate</title>
+</head>
+
+<body>
+    <h2>GradeCal</h2>
+    <div ng-controller="TodoListController as todoList">
+        <table>
+            <tr>
+                <td>หน่วยกิตที่ได้ (สะสม) : </td>
+                <td>
+                    <input type="number" placeholder="หน่วยกิตที่ได้ (สะสม)" ng-model="unitTotal">
+                </td>
+            </tr>
+            <tr>
+                <td>แต้มระดับคะแนน (สะสม) :</td>
+                <td>
+                    <input type="number" placeholder="แต้มระดับคะแนน (สะสม)" ng-model="scoreTotal">
+                </td>
+            </tr>
+        </table>
+        
+        <h1 ng-hide="hide">{{calGrade()}}</h1>
+        <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span> [ <a href="" ng-click="todoList.archive()">archive</a> ]
+        
+        <ul class="unstyled">
+            <li ng-repeat="todo in todoList.todos">
+                <input type="checkbox" ng-model="todo.done">
+                <span class="done-{{todo.done}}">{{todo.sub}} : {{todo.unit}} : {{showGrade(todo.grade)}}</span>
+            </li>
+        </ul>
+
+        <form ng-submit="todoList.addTodo()">
+            <input type="text" ng-model="inputSub" size="30" placeholder="add new Subject here" required>
+
+            <select ng-model="inputUnit">
+              <option value="1" >1</option>
+              <option value="3" >3</option>
+            </select>
+
+            <select ng-model="inputGrade" >
+              <option value="4" >A</option>
+              <option value="3.5">B+</option>
+              <option value="3">B</option>
+              <option value="2.5">C+</option>
+              <option value="2">C</option>
+              <option value="1.5">D+</option>
+              <option value="1">D</option>
+              <option value="0">F</option>
+            </select>
+            <input class="btn-primary" type="submit" value="add">
+        </form>
+    </div>
+</body>
+
+</html>
