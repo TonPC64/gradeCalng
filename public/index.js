@@ -50,7 +50,8 @@ angular.module('todoApp', [])
 
       if (grade) $scope.hide = false
       else $scope.hide = true
-
+      console.log($scope.scoreTotal + Tscore)
+      console.log($scope.unitTotal + Tunit)
       return Math.floor(grade * 100) / 100
     // return Tscore + ' : ' + Tunit
     }
